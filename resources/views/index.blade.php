@@ -349,7 +349,6 @@
     <!-- 复选框js -->
     <script src="{{asset('/js/jquery-labelauty.js')}}"></script>
     <script>
-        var logVoteCount=[],manVoteCount=[];
 
         $(function(){
             $(':input').labelauty();
@@ -357,6 +356,8 @@
 
         function voteClick()
         {
+            var logVoteCount=[],manVoteCount=[];
+
             $("input[name='logo']").each(function(){
             if($(this).is(':checked'))
             {
