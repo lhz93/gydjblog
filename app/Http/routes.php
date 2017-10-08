@@ -19,7 +19,6 @@ Route::group(['middleware' => 'wechat.oauth'], function () {
     Route::post('/vote','indexController@voteCompany');//投票的api
 });
 
-Route::post('/vote','indexController@voteCompany');//投票的api
 //
 Route::get('/getVoteCount', 'indexController@getAllCompanyCount');
 //
