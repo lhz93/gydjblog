@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\DB;
 use League\Flysystem\Exception;
 use PhpParser\Node\Expr\Array_;
 use Session;
-use Redis;
+use LvRedis;
 use WeChat;
 use Crypt;
 use SnappyImage;
@@ -75,9 +75,9 @@ class indexController extends Controller
     {
         $result=false;
         $userId = urldecode($request->segment('1'));
-        if(!Redis::exists($userId))
+        if(!LvRedis::exists($userId))
         {
-            Redis::set($userId);
+            LvRedis::set($userId);
             $result=true;
         }
         return response()->json($result);
@@ -132,7 +132,7 @@ class indexController extends Controller
         $votePeopleList =json_decode($request->get('votep'));
         $redisKey=trim('openid_vote_' . date('Ymd') . '_' . $strOpenid);
 
-        if(Redis::exists($redisKey))
+        if(LvRedis::exists($redisKey))
         {
             $result=2;
             return response()->json($result);
@@ -164,8 +164,8 @@ class indexController extends Controller
             }
             try{
                 DB::commit();
-                Redis::set($redisKey,$strOpenid);
-                Redis::expire($redisKey, 86400);
+                LvRedis::set($redisKey,$strOpenid);
+                LvRedis::expire($redisKey, 86400);
                 $result=1;
 
             }
