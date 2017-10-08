@@ -412,6 +412,7 @@
                     },
                     error:function()
                     {
+                        alert('投票失败!');
                         // sublodend();
                     }
 
