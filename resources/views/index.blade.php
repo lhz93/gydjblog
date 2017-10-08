@@ -2,6 +2,7 @@
 <html lang="zh-cmn-Hans">
 <head>
     <meta charset="UTF-8" manifest="vote.manifest">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
     <title>第三届深圳工业大奖公众投票</title>
     <meta name="description" content="第三届深圳工业大奖评选公众投票">
@@ -335,7 +336,7 @@
     </div>
 
     <div class="check">
-        <input type="hidden" id="tokenValue" name="_token" value="{{csrf_token()}}"/>
+
         <a href="javascript:void(0)" class="vote_btn" onclick="voteClick()"><span>提交投票</span></a>
     </div>
 </div>
@@ -379,14 +380,16 @@
                 alert("请至少选择3个企业家");
             }
             else{
-                var token=$('#tokenValue').val();
+               // var token=$('#tokenValue').val();
                 $.ajax({
                    url:'/vote',
                     type:'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
                     data:{
                         votee:JSON.stringify(logVoteCount),
-                        votep:JSON.stringify(manVoteCount),
-                        _token:token
+                        votep:JSON.stringify(manVoteCount)
                     },
                     success:function(response){
                         // sublodend();
