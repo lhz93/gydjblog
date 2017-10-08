@@ -341,8 +341,8 @@
 </div>
 
     <footer>
-        <p>主办单位：深圳工业总会</p>
-        <p>联系电话：0755-83688772</p>
+        <p>主办单位：深圳工业总会  深圳商报</p>
+        <p>Copyright © 2017 深圳工业总会</p>
     </footer>
 
     <script src="{{asset('/js/jquery.min.js')}}"></script>
