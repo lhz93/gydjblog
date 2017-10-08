@@ -336,7 +336,6 @@
 
     <div class="check">
         <input type="hidden" id="tokenValue" name="_token" value="{{csrf_token()}}"/>
-        <input type="hidden" id="openId" value="{{$openId}}">
         <a href="javascript:void(0)" class="vote_btn" onclick="voteClick()"><span>提交投票</span></a>
     </div>
 </div>
@@ -387,7 +386,6 @@
                     data:{
                         votee:JSON.stringify(logVoteCount),
                         votep:JSON.stringify(manVoteCount),
-                        open_id:$('#openId').val(),
                         _token:token
                     },
                     success:function(response){
