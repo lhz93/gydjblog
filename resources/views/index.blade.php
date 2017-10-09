@@ -352,6 +352,10 @@
     <script src="http://staic.fszi.org/js/jquery.min.js"></script>
     <!-- 复选框js -->
     <script src="http://staic.fszi.org/js/jquery-labelauty.js"></script>
+
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript" charset="utf-8"></script>
+
+
     <script>
 
         $(function(){
@@ -375,11 +379,11 @@
                 }
             });
 
-            if(logVoteCount<3)
+            if(logVoteCount.length<3)
             {
               alert("请至少选择3个企业");
             }
-            else if(manVoteCount<3)
+            else if(manVoteCount.length<3)
             {
                 alert("请至少选择3个企业家");
             }
@@ -404,6 +408,10 @@
                         {
                             alert('一天只能投一次票!');
                         }
+                        else if(response==3)
+                         {
+                             alert('不在投票时间内!');
+                         }
                         else{
                             alert('投票失败,请重新投!');
                         }
@@ -425,5 +433,39 @@
     </script>
     <!-- 复选框js  -->
 
+<script type="text/javascript" charset="utf-8">
+    wx.config(<?php echo $js->config(array('checkJsApi','onMenuShareAppMessage', 'onMenuShareTimeline'), false) ?>);
+
+    wx.ready(function () {
+
+        wx.checkJsApi({
+            jsApiList: ['onMenuShareAppMessage'], // 需要检测的JS接口列表，所有JS接口列表见附录2,
+            success: function(res) {
+                if(res.checkResult.onMenuShareAppMessage)
+                {
+                    wx.onMenuShareAppMessage({
+                        title: '第三届深圳工业大奖公众投票', // 分享标题
+                        desc: '第三届深圳工业大奖公众投票正在火热进行', // 分享描述
+                        link: '{{url()->current();}}', // 分享链接
+                        imgUrl: 'http://staic.fszi.org/img/thumb.png', // 分享图标
+                        type: '', // 分享类型,music、video或link，不填默认为link
+                        dataUrl: ''
+                    });
+
+                    wx.onMenuShareTimeline({
+                        title: '第三届深圳工业大奖公众投票', // 分享标题
+                        link: '{{url()->current();}}', // 分享链接checkResult
+                        imgUrl: 'http://staic.fszi.org/img/thumb.png'
+                    });
+                };
+                // 如：{"checkResult":{"chooseImage":true},"errMsg":"checkJsApi:ok"}
+            }
+        });
+
+
+
+    });
+
+</script>
 </body>
 </html>
