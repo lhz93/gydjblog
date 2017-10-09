@@ -27,7 +27,7 @@ class indexController extends Controller
         $js = WeChat::js();
         $wechatUser = session('wechat.oauth_user');
         $strOpenId = $wechatUser->getId();
-        //$strOpenId = 'test1012';
+        //$strOpenId = 'test2';
 
         Session::put('open_id', $strOpenId);
         $resut=Array();
@@ -116,57 +116,55 @@ class indexController extends Controller
         $votePeopleList =json_decode($request->get('votep'));
         $redisKey=trim('openid_vote_' . date('Ymd') . '_' . $strOpenid);
 
-        if (!$this->checkVoteTime()) {
+        if ($this->checkVoteTime()) {
             $result=3;
-            return response()->json($result);
+            //return response()->json($result);
         }
-
-        if(LvRedis::exists($redisKey))
+        else if(LvRedis::exists($redisKey))
         {
             $result=2;
-            return response()->json($result);
-        }
+            //return response()->json($result);
+        }else{
 
-        $voteArray=Array();
-        $voteP=Array();
-        $result=false;
-        if($voteList!=null&&count($voteList)>0&&$votePeopleList!=null&&count($votePeopleList)>0)
-        {
-            DB::beginTransaction();
-            foreach($voteList as $value)
+            $voteArray=Array();
+            $voteP=Array();
+            $result=false;
+            if($voteList!=null&&count($voteList)>0&&$votePeopleList!=null&&count($votePeopleList)>0)
             {
-                DB::insert('insert into CX_Vote (company_id,vote) values (?, ?)', array($value, '1'));
+                DB::beginTransaction();
+                foreach($voteList as $value)
+                {
+                    DB::insert('insert into CX_Vote (company_id,vote) values (?, ?)', array($value, '1'));
 //                $vote=new Vote();
 //                $vote->company_id=$value;
 //                $vote->vote=1;
 //                array_push($voteArray,$vote);
-            }
+                }
 
-            foreach($votePeopleList as $value)
-            {
-                DB::insert('insert into CX_People (people_id) values (?)', array($value));
+                foreach($votePeopleList as $value)
+                {
+                    DB::insert('insert into CX_People (people_id) values (?)', array($value));
 
 //                $p=new People();
 //                $p->people_id=$value;
 //
 //                array_push($voteP,$p);
-            }
-            try{
-                DB::commit();
-                LvRedis::set($redisKey,$strOpenid);
-                $date_time_hours = date("H");
-                $date_time_minutes = date("i");
-                $date_time_seconds = date("i");
-                $redisSeconds=(int)(86400-$date_time_hours*60*60+$date_time_minutes*60+$date_time_seconds*1);
-                LvRedis::expire($redisKey, $redisSeconds);
-                $result=1;
+                }
+                try{
+                    DB::commit();
+                    LvRedis::set($redisKey,$strOpenid);
+                    $date_time_hours = date("H");
+                    $date_time_minutes = date("i");
+                    $date_time_seconds = date("i");
+                    $redisSeconds=(int)(86400-$date_time_hours*60*60+$date_time_minutes*60+$date_time_seconds*1);
+                    LvRedis::expire($redisKey, $redisSeconds);
+                    $result=1;
 
+                }
+                catch(Exception $ex){
+                    DB::rollBack();
+                }
             }
-            catch(Exception $ex){
-                DB::rollBack();
-            }
-
-
 
         }
 
@@ -176,18 +174,12 @@ class indexController extends Controller
 
     private function checkVoteTime()
     {
-        $intVoteStartTime = Cache::rememberForever('vote_start_time', function () {
-            return strtotime('2017-10-09 00:00:00');
-        });
-        $intVoteEndTime = Cache::rememberForever('vote_end_time', function () {
-            return strtotime('2017-10-16 00:00:00');
-        });
-        $intVoteDayStartTime = Cache::rememberForever('vote_day_start_time', function () {
-            return '09:00';
-        });
-        $intVoteDayEndTime = Cache::rememberForever('vote_day_end_time', function () {
-            return '21:00';
-        });
+        $intVoteStartTime = strtotime('2017-10-09 00:00:00');
+        $intVoteEndTime = strtotime('2017-10-16 00:00:00');
+
+        $intVoteDayStartTime = '09:00';
+        $intVoteDayEndTime = '21:00';
+
         $intTime = time();
         $strTime = date('H:i');
         if ($intTime >= $intVoteStartTime and $intTime <= $intVoteEndTime and $strTime >= $intVoteDayStartTime and $strTime <= $intVoteDayEndTime) {
