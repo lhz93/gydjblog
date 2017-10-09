@@ -24,25 +24,12 @@ class indexController extends Controller
 {
     public function index()
     {
-        //$js = WeChat::js();
+        $js = WeChat::js();
         $wechatUser = session('wechat.oauth_user');
         $strOpenId = $wechatUser->getId();
-       // $strOpenId = 'test3';
-        Session::put('open_id', $strOpenId);
-        //$intSubscribe = true;
-        //Session::put('subscribe', $intSubscribe);
-//        $intSubscribe = Session::get('subscribe');
-//        if (!$intSubscribe) {
-//            $objUser = WeChat::user()->get($strOpenId);
-//            $intSubscribe = $objUser->subscribe;
-//            Session::put('subscribe', $intSubscribe);
-//        }
-//        $data['subscribe'] = $intSubscribe;
-//
-//        if (!$intSubscribe) {
-//            return redirect('/vote/attention');
-//        }
+        //$strOpenId = 'test1012';
 
+        Session::put('open_id', $strOpenId);
         $resut=Array();
         $peopleResult=Array();
         $voteAll=Vote::all();
@@ -68,7 +55,7 @@ class indexController extends Controller
         $counte=Vote::count();
         $countp=People::count();
 
-        return view('index',['voteCount'=>$counte+$countp,'companyCount'=>$resut,'peopleCount'=>$peopleResult,'openId'=>$strOpenId]);
+        return view('index',['voteCount'=>$counte+$countp,'companyCount'=>$resut,'peopleCount'=>$peopleResult,'openId'=>$strOpenId,'js'=>$js]);
     }
 
     public function checkUserIsVote(Request $request)
@@ -120,9 +107,6 @@ class indexController extends Controller
 
     public function voteCompany(Request $request)
     {
-        //$voteList =explode(",", $_POST['votee']);
-        //$votePeopleList =explode(",", $_POST['votep']);
-        //return response()->json(array("result"=>$voteList,"test"=>$votePeopleList));
         $result=0;
         $strOpenid = Session::get('open_id');
 
@@ -131,6 +115,11 @@ class indexController extends Controller
 
         $votePeopleList =json_decode($request->get('votep'));
         $redisKey=trim('openid_vote_' . date('Ymd') . '_' . $strOpenid);
+
+        if (!$this->checkVoteTime()) {
+            $result=3;
+            return response()->json($result);
+        }
 
         if(LvRedis::exists($redisKey))
         {
@@ -165,7 +154,11 @@ class indexController extends Controller
             try{
                 DB::commit();
                 LvRedis::set($redisKey,$strOpenid);
-                LvRedis::expire($redisKey, 86400);
+                $date_time_hours = date("H");
+                $date_time_minutes = date("i");
+                $date_time_seconds = date("i");
+                $redisSeconds=(int)(86400-$date_time_hours*60*60+$date_time_minutes*60+$date_time_seconds*1);
+                LvRedis::expire($redisKey, $redisSeconds);
                 $result=1;
 
             }
@@ -180,6 +173,30 @@ class indexController extends Controller
         return response()->json($result);
 
     }
+
+    private function checkVoteTime()
+    {
+        $intVoteStartTime = Cache::rememberForever('vote_start_time', function () {
+            return strtotime('2017-10-09 00:00:00');
+        });
+        $intVoteEndTime = Cache::rememberForever('vote_end_time', function () {
+            return strtotime('2017-10-16 00:00:00');
+        });
+        $intVoteDayStartTime = Cache::rememberForever('vote_day_start_time', function () {
+            return '09:00';
+        });
+        $intVoteDayEndTime = Cache::rememberForever('vote_day_end_time', function () {
+            return '21:00';
+        });
+        $intTime = time();
+        $strTime = date('H:i');
+        if ($intTime >= $intVoteStartTime and $intTime <= $intVoteEndTime and $strTime >= $intVoteDayStartTime and $strTime <= $intVoteDayEndTime) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 
 
 
