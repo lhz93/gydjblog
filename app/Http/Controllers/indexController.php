@@ -116,7 +116,7 @@ class indexController extends Controller
         $votePeopleList =json_decode($request->get('votep'));
         $redisKey=trim('openid_vote_' . date('Ymd') . '_' . $strOpenid);
 
-        if (!$this->checkVoteTime()) {
+        if ($this->checkVoteTime()) {
             $result=3;
             //return response()->json($result);
         }
