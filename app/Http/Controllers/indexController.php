@@ -27,7 +27,7 @@ class indexController extends Controller
         $js = WeChat::js();
         $wechatUser = session('wechat.oauth_user');
         $strOpenId = $wechatUser->getId();
-        //$strOpenId = 'test2';
+        //$strOpenId = 'test2231221';
 
         Session::put('open_id', $strOpenId);
         $resut=Array();
@@ -116,7 +116,7 @@ class indexController extends Controller
         $votePeopleList =json_decode($request->get('votep'));
         $redisKey=trim('openid_vote_' . date('Ymd') . '_' . $strOpenid);
 
-        if ($this->checkVoteTime()) {
+        if (!$this->checkVoteTime()) {
             $result=3;
             //return response()->json($result);
         }
@@ -131,10 +131,11 @@ class indexController extends Controller
             $result=false;
             if($voteList!=null&&count($voteList)>0&&$votePeopleList!=null&&count($votePeopleList)>0)
             {
-                DB::beginTransaction();
+                //DB::beginTransaction();
                 foreach($voteList as $value)
                 {
-                    DB::insert('insert into CX_Vote (company_id,vote) values (?, ?)', array($value, '1'));
+                    LvRedis::rpush('lvotee',$value);
+                    //DB::insert('insert into CX_Vote (company_id,vote) values (?, ?)', array($value, '1'));
 //                $vote=new Vote();
 //                $vote->company_id=$value;
 //                $vote->vote=1;
@@ -143,7 +144,8 @@ class indexController extends Controller
 
                 foreach($votePeopleList as $value)
                 {
-                    DB::insert('insert into CX_People (people_id) values (?)', array($value));
+                    LvRedis::rpush('lvotep',$value);
+                 //   DB::insert('insert into CX_People (people_id) values (?)', array($value));
 
 //                $p=new People();
 //                $p->people_id=$value;
@@ -151,7 +153,7 @@ class indexController extends Controller
 //                array_push($voteP,$p);
                 }
                 try{
-                    DB::commit();
+                   // DB::commit();
                     LvRedis::set($redisKey,$strOpenid);
                     $date_time_hours = date("H");
                     $date_time_minutes = date("i");
@@ -162,7 +164,7 @@ class indexController extends Controller
 
                 }
                 catch(Exception $ex){
-                    DB::rollBack();
+                   // DB::rollBack();
                 }
             }
 
@@ -178,7 +180,7 @@ class indexController extends Controller
         $intVoteEndTime = strtotime('2017-10-16 00:00:00');
 
         $intVoteDayStartTime = '09:00';
-        $intVoteDayEndTime = '21:00';
+        $intVoteDayEndTime = '24:00';
 
         $intTime = time();
         $strTime = date('H:i');
