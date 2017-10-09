@@ -27,7 +27,7 @@ class indexController extends Controller
         $js = WeChat::js();
         $wechatUser = session('wechat.oauth_user');
         $strOpenId = $wechatUser->getId();
-        //$strOpenId = 'test2231221';
+        //$strOpenId = 'test22222222111221';
 
         Session::put('open_id', $strOpenId);
         $resut=Array();
@@ -124,7 +124,9 @@ class indexController extends Controller
         $votePeopleList =json_decode($request->get('votep'));
         $redisKey=trim('openid_vote_' . date('Ymd') . '_' . $strOpenid);
 
-        if (!$this->checkVoteTime()) {
+        $terst=$this->checkVoteTime();
+
+        if ($this->checkVoteTime()) {
             $result=3;
             //return response()->json($result);
         }
