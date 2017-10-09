@@ -26,8 +26,8 @@ class indexController extends Controller
     {
         $js = WeChat::js();
         $wechatUser = session('wechat.oauth_user');
-        //$strOpenId = $wechatUser->getId();
-        $strOpenId = 'test2222222211122221';
+        $strOpenId = $wechatUser->getId();
+        //$strOpenId = 'test2222222211122221';
 
         Session::put('open_id', $strOpenId);
         $resut=Array();
