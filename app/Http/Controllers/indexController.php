@@ -126,7 +126,11 @@ class indexController extends Controller
 
         $terst=$this->checkVoteTime();
 
-        if (!$this->checkVoteTime()) {
+        if($strOpenid==null)
+        {
+            $result=4;
+
+        }else if(!$this->checkVoteTime()) {
             $result=3;
             //return response()->json($result);
         }
