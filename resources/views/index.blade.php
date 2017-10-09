@@ -36,7 +36,7 @@
         </div>
         <div class="count3 right">
             <p>投票人次</p>
-            <p>{{$voteCount}}</p>
+            <p>{{isset($voteCount)?$voteCount:"0"}}</p>
         </div>
     </div>
 </header>
@@ -258,7 +258,7 @@
             <img src="http://staic.fszi.org/man/3.png">
             <h6>刘骏</h6>
             <p>深圳市日联科技有限公司董事长</p>
-            <p><span>{{isset($peopleCount['3'])?"0":$peopleCount['3']}}</span>票</p>
+            <p><span>{{isset($peopleCount['3'])?$peopleCount['3']:"0"}}</span>票</p>
             <p class="dowebok"><input type="checkbox" name="man" value="3" data-labelauty="选择"></p>
         </div>
         <div class="man">

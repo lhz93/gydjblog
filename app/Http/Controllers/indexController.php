@@ -35,22 +35,30 @@ class indexController extends Controller
         $voteAll=Vote::all();
         $peopleAll=People::all();
 
-        $companyIdDistince=$voteAll->groupBy('company_id')->toArray();
-
-        $peopleAllDistince=$peopleAll->groupBy('people_id')->toArray();
-        //var_dump($companyIdDistince);
-
-        foreach($companyIdDistince as $key => $value)
+        if($voteAll!=null)
         {
-            $resut[$key]=count($value);
-            //var_dump($resut);
+            $companyIdDistince=$voteAll->groupBy('company_id')->toArray();
+            foreach($companyIdDistince as $key => $value)
+            {
+                $resut[$key]=count($value);
+                //var_dump($resut);
+            }
+
         }
 
-
-        foreach($peopleAllDistince as $key => $value)
+        if($peopleAll!=null)
         {
-            $peopleResult[$key]=count($value);
-        }
+            $peopleAllDistince=$peopleAll->groupBy('people_id')->toArray();
+
+            foreach($peopleAllDistince as $key => $value)
+            {
+                $peopleResult[$key]=count($value);
+            }
+
+
+        }//var_dump($companyIdDistince);
+
+
 
         $counte=Vote::count();
         $countp=People::count();
@@ -181,7 +189,7 @@ class indexController extends Controller
         $intVoteEndTime = strtotime('2017-10-16 00:00:00');
 
         $intVoteDayStartTime = '09:00';
-        $intVoteDayEndTime = '24:00';
+        $intVoteDayEndTime = '21:00';
 
         $intTime = time();
         $strTime = date('H:i');
