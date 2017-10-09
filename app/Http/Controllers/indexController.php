@@ -123,6 +123,7 @@ class indexController extends Controller
         else if(LvRedis::exists($redisKey))
         {
             $result=2;
+
             //return response()->json($result);
         }else{
 
@@ -131,11 +132,11 @@ class indexController extends Controller
             $result=false;
             if($voteList!=null&&count($voteList)>0&&$votePeopleList!=null&&count($votePeopleList)>0)
             {
-                //DB::beginTransaction();
+                DB::beginTransaction();
                 foreach($voteList as $value)
                 {
-                    LvRedis::rpush('lvotee',$value);
-                    //DB::insert('insert into CX_Vote (company_id,vote) values (?, ?)', array($value, '1'));
+                    //LvRedis::rpush('lvotee',$value);
+                    DB::insert('insert into CX_Vote (company_id,vote) values (?, ?)', array($value, '1'));
 //                $vote=new Vote();
 //                $vote->company_id=$value;
 //                $vote->vote=1;
@@ -144,8 +145,8 @@ class indexController extends Controller
 
                 foreach($votePeopleList as $value)
                 {
-                    LvRedis::rpush('lvotep',$value);
-                 //   DB::insert('insert into CX_People (people_id) values (?)', array($value));
+                    //LvRedis::rpush('lvotep',$value);
+                   DB::insert('insert into CX_People (people_id) values (?)', array($value));
 
 //                $p=new People();
 //                $p->people_id=$value;
@@ -153,7 +154,7 @@ class indexController extends Controller
 //                array_push($voteP,$p);
                 }
                 try{
-                   // DB::commit();
+                    DB::commit();
                     LvRedis::set($redisKey,$strOpenid);
                     $date_time_hours = date("H");
                     $date_time_minutes = date("i");
@@ -164,7 +165,7 @@ class indexController extends Controller
 
                 }
                 catch(Exception $ex){
-                   // DB::rollBack();
+                    DB::rollBack();
                 }
             }
 
