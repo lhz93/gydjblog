@@ -24,7 +24,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('inspire')
-                 ->hourly();
+        //$schedule->command('inspire')->hourly();
+        $schedule->command('vote:mysql')->everyMinute()->withoutOverlapping();
+        $schedule->command('people:mysql')->everyMinute()->withoutOverlapping();
     }
 }
