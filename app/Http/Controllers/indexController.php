@@ -190,7 +190,7 @@ class indexController extends Controller
         $intVoteStartTime = strtotime('2017-10-09 00:00:00');
         $intVoteEndTime = strtotime('2017-10-16 00:00:00');
 
-        $intVoteDayStartTime = '01:00';
+        $intVoteDayStartTime = '09:00';
         $intVoteDayEndTime = '21:00';
 
         $intTime = time();
