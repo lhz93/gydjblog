@@ -123,6 +123,7 @@ class indexController extends Controller
         else if(LvRedis::exists($redisKey))
         {
             $result=2;
+
             //return response()->json($result);
         }else{
 
