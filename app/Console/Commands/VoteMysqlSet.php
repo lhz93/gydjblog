@@ -5,7 +5,7 @@ namespace App\Console\Commands;
 use App\Vote;
 use Illuminate\Console\Command;
 
-class VoteLimitSet extends Command
+class VoteMysqlSet extends Command
 {
     /**
      * The name and signature of the console command.
