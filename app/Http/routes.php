@@ -29,7 +29,7 @@ Route::get('/getAllCount', 'indexController@getAllVoteCount');
 
 
 
-Route::get('/e_admin_l/login','AdminController@login')->name('login');      //后台登录页
+Route::get('/admin/login','AdminController@login')->name('login');      //后台登录页
 
 Route::get('/admin/logout','AdminController@logout');       //后台登出
 
