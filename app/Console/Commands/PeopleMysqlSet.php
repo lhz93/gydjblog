@@ -6,7 +6,7 @@ use App\People;
 use Illuminate\Console\Command;
 use Symfony\Component\Process\Process;
 
-class VoteLimitSet extends Command
+class PeopleMysqlSet extends Command
 {
     /**
      * The name and signature of the console command.
