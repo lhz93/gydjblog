@@ -9,16 +9,7 @@
     <!-- 复选框css -->
     <link rel="stylesheet" href="{{asset('/css/jquery-labelauty.css')}}">
     <!-- 复选框css -->
-    <!-- 百度统计  -->
-    <script>
-        var _hmt = _hmt || [];
-        (function() {
-            var hm = document.createElement("script");
-            hm.src = "//hm.baidu.com/hm.js?0d1031f7c74d8a4a33cac86fce2fc8f4";
-            var s = document.getElementsByTagName("script")[0];
-            s.parentNode.insertBefore(hm, s);
-        })();
-    </script>
+
 
 </head>
 <body>
@@ -458,7 +449,7 @@
 
     <footer>
         <p>主办单位：深圳工业总会  深圳商报</p>
-        <p>Copyright © 2017 深圳工业总会</p>
+        <p>Copyright © 2019 深圳工业总会</p>
     </footer>
 
 <script src="{{asset('/js/jquery.min.js')}}"></script>
@@ -579,5 +570,17 @@
     });
 
 </script>
+
+    <!-- 百度统计  -->
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?0d1031f7c74d8a4a33cac86fce2fc8f4";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
 </body>
 </html>
