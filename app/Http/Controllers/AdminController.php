@@ -14,7 +14,6 @@ use Input;
 use Cache;
 use Redis;
 use DB;
-use Excel;
 
 class AdminController extends Controller
 {
