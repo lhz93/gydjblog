@@ -33,7 +33,7 @@ class indexController extends Controller
         $voteAll=Vote::all();
         $peopleAll=People::all();
 
-        if($voteAll!=null)
+        if($voteAll!=null&&count($voteAll)>0)
         {
             $companyIdDistince=$voteAll->groupBy('company_id')->toArray();
             foreach($companyIdDistince as $key => $value)
@@ -44,17 +44,17 @@ class indexController extends Controller
 
         }
 
-        if($peopleAll!=null)
+        if($peopleAll!=null&&count($peopleAll)>0)
         {
             $peopleAllDistince=$peopleAll->groupBy('people_id')->toArray();
 
-            foreach($peopleAllDistince as $key => $value)
+           foreach($peopleAllDistince as $key => $value)
             {
                 $peopleResult[$key]=count($value);
             }
 
 
-        }//var_dump($companyIdDistince);
+        }
 
 
 
