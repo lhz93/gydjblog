@@ -442,7 +442,7 @@
     </div>
 
     <div class="forum">
-        <a href="http://www.fszi.org/"><img src="img/banner2.jpg"></a>
+        <a href="http://www.fszi.org/zhuanti/8th_wuzhou/"><img src="img/banner2.jpg"></a>
     </div>
 
 </div>
