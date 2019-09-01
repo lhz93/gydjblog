@@ -123,7 +123,7 @@ return [
         Illuminate\Cookie\CookieServiceProvider::class,
         Illuminate\Database\DatabaseServiceProvider::class,
         Illuminate\Encryption\EncryptionServiceProvider::class,
-        Illuminate\Filesystem\FilesystemServiceProvider::class,
+        //Illuminate\Filesystem\FilesystemServiceProvider::class,
         Illuminate\Foundation\Providers\FoundationServiceProvider::class,
         Illuminate\Hashing\HashServiceProvider::class,
         Illuminate\Mail\MailServiceProvider::class,
@@ -144,7 +144,7 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        Maatwebsite\Excel\ExcelServiceProvider::class,
+        //Maatwebsite\Excel\ExcelServiceProvider::class,
         Overtrue\LaravelWechat\ServiceProvider::class,
     ],
 
@@ -193,9 +193,9 @@ return [
         'URL'       => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
-        'PDF' =>  Barryvdh\Snappy\Facades\SnappyPdf::class,
+        //'PDF' =>  Barryvdh\Snappy\Facades\SnappyPdf::class,
         'WeChat' => Overtrue\LaravelWechat\Facade::class,
-        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        //'Excel' => Maatwebsite\Excel\Facades\Excel::class,
 
     ],
 
