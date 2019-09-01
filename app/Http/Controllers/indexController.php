@@ -16,8 +16,6 @@ use Session;
 use LvRedis;
 use WeChat;
 use Crypt;
-use SnappyImage;
-use PDF;
 use Illuminate\Support\Facades\App;
 
 class indexController extends Controller
