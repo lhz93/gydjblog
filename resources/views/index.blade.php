@@ -283,14 +283,14 @@
     <div class="row">
         <div class="man">
             <img src="{{asset('/img/man/1.jpg')}}">
-            <h6>马竹茂</h6>
+            <h5>马竹茂</h5>
             <p>深圳市宝德计算机系统有限公司总经理</p>
             <p><span>{{isset($peopleCount['1'])?$peopleCount['1']:"0"}}</span>票</p>
             <p class="dowebok"><input type="checkbox" name="man" value="1" data-labelauty="选择"></p>
         </div>
         <div class="man">
             <img src="{{asset('/img/man/2.jpg')}}">
-            <h6>王传福</h6>
+            <h5>王传福</h5>
             <p>比亚迪股份有限公司董事长兼总裁</p>
             <p><span>{{isset($peopleCount['2'])?$peopleCount['2']:"0"}}</span>票</p>
             <p class="dowebok"><input type="checkbox" name="man" value="2" data-labelauty="选择"></p>
@@ -300,14 +300,14 @@
     <div class="row">
         <div class="man">
             <img src="{{asset('/img/man/3.jpg')}}">
-            <h6>卢国明</h6>
+            <h5>卢国明</h5>
             <p>深圳市腾盛工业设备有限公司总经理</p>
             <p><span>{{isset($peopleCount['3'])?"0":$peopleCount['3']}}</span>票</p>
             <p class="dowebok"><input type="checkbox" name="man" value="3" data-labelauty="选择"></p>
         </div>
         <div class="man">
             <img src="{{asset('/img/man/4.jpg')}}">
-            <h6>杜建军</h6>
+            <h5>杜建军</h5>
             <p>深圳市超频三科技股份有限公司董事长</p>
             <p><span>{{isset($peopleCount['4'])?$peopleCount['4']:"0"}}</span>票</p>
             <p class="dowebok"><input type="checkbox" name="man" value="4" data-labelauty="选择"></p>
@@ -317,14 +317,14 @@
     <div class="row">
         <div class="man">
             <img src="{{asset('/img/man/5.jpg')}}">
-            <h6>李迪初</h6>
+            <h5>李迪初</h5>
             <p>深圳市长方集团股份有限公司CEO</p>
             <p><span>{{isset($peopleCount['5'])?$peopleCount['5']:"0"}}</span>票</p>
             <p class="dowebok"><input type="checkbox" name="man"  value="5" data-labelauty="选择"></p>
         </div>
         <div class="man">
             <img src="{{asset('/img/man/6.jpg')}}">
-            <h6>吴光胜</h6>
+            <h5>吴光胜</h5>
             <p>华讯方舟科技有限公司董事长</p>
             <p><span>{{isset($peopleCount['6'])?$peopleCount['6']:"0"}}</span>票</p>
             <p class="dowebok"><input type="checkbox" name="man" value="6" data-labelauty="选择"></p>
@@ -334,14 +334,14 @@
     <div class="row">
         <div class="man">
             <img src="{{asset('/img/man/7.jpg')}}">
-            <h6>吴新理</h6>
+            <h5>吴新理</h5>
             <p>深圳市隆利科技股份有限公司总经理</p>
             <p><span>{{isset($peopleCount['7'])?$peopleCount['7']:"0"}}</span>票</p>
             <p class="dowebok"><input type="checkbox" name="man" value="7" data-labelauty="选择"></p>
         </div>
         <div class="man">
             <img src="{{asset('/img/man/8.jpg')}}">
-            <h6>沈庆芳</h6>
+            <h5>沈庆芳</h5>
             <p>鹏鼎控股（深圳）股份有限公司董事长</p>
             <p><span>{{isset($peopleCount['8'])?$peopleCount['8']:"0"}}</span>票</p>
             <p class="dowebok"><input type="checkbox" name="man" value="8" data-labelauty="选择"></p>
@@ -351,14 +351,14 @@
     <div class="row">
         <div class="man">
             <img src="{{asset('/img/man/9.jpg')}}">
-            <h6>陈学敏</h6>
+            <h5>陈学敏</h5>
             <p>深圳市新星轻合金材料股份有限公司董事长兼总经理</p>
             <p><span>{{isset($peopleCount['9'])?$peopleCount['9']:"0"}}</span>票</p>
             <p class="dowebok"><input type="checkbox" name="man" value="9" data-labelauty="选择"></p>
         </div>
         <div class="man">
             <img src="{{asset('/img/man/10.jpg')}}">
-            <h6>陈春</h6>
+            <h5>陈春</h5>
             <p>深圳市创想三维科技有限公司总经理</p>
             <p><span>{{isset($peopleCount['10'])?$peopleCount['10']:"0"}}</span>票</p>
             <p class="dowebok"><input type="checkbox" name="man" value="10" data-labelauty="选择"></p>
@@ -368,14 +368,14 @@
     <div class="row">
         <div class="man">
             <img src="{{asset('/img/man/11.jpg')}}">
-            <h6>陈清州</h6>
+            <h5>陈清州</h5>
             <p>海能达通信股份有限公司董事长</p>
             <p><span>{{isset($peopleCount['11'])?$peopleCount['11']:"0"}}</span>票</p>
             <p class="dowebok"><input type="checkbox" name="man" value="11" data-labelauty="选择"></p>
         </div>
         <div class="man">
             <img src="{{asset('/img/man/12.jpg')}}">
-            <h6>周彬</h6>
+            <h5>周彬</h5>
             <p>康佳集团股份有限公司总裁</p>
             <p><span>{{isset($peopleCount['12'])?$peopleCount['12']:"0"}}</span>票</p>
             <p class="dowebok"><input type="checkbox" name="man" value="12" data-labelauty="选择"></p>
@@ -385,14 +385,14 @@
     <div class="row">
         <div class="man">
             <img src="{{asset('/img/man/13.jpg')}}">
-            <h6>姜雪飞</h6>
+            <h5>姜雪飞</h5>
             <p>崇达技术股份有限公司董事长</p>
             <p><span>{{isset($peopleCount['13'])?$peopleCount['13']:"0"}}</span>票</p>
             <p class="dowebok"><input type="checkbox" name="man" value="13" data-labelauty="选择"></p>
         </div>
         <div class="man">
             <img src="{{asset('/img/man/14.jpg')}}">
-            <h6>黄治家</h6>
+            <h5>黄治家</h5>
             <p>深圳市杰普特光电股份有限公司董事长</p>
             <p><span>{{isset($peopleCount['14'])?$peopleCount['14']:"0"}}</span>票</p>
             <p class="dowebok"><input type="checkbox" name="man" value="14" data-labelauty="选择"></p>
@@ -403,14 +403,14 @@
     <div class="row">
         <div class="man">
             <img src="{{asset('/img/man/15.jpg')}}">
-            <h6>黄勇峰</h6>
+            <h5>黄勇峰</h5>
             <p>飞亚达（集团）股份有限公司董事长</p>
             <p><span>{{isset($peopleCount['15'])?$peopleCount['15']:"0"}}</span>票</p>
             <p class="dowebok"><input type="checkbox" name="man" value="15" data-labelauty="选择"></p>
         </div>
         <div class="man">
             <img src="{{asset('/img/man/16.jpg')}}">
-            <h6>廖晓霞</h6>
+            <h5>廖晓霞</h5>
             <p>深圳奥特讯电力设备股份有限公司董事长兼总经理</p>
             <p><span>{{isset($peopleCount['16'])?$peopleCount['16']:"0"}}</span>票</p>
             <p class="dowebok"><input type="checkbox" name="man" value="16" data-labelauty="选择"></p>
@@ -421,14 +421,14 @@
     <div class="row">
         <div class="man">
             <img src="{{asset('/img/man/17.jpg')}}">
-            <h6>熊伟</h6>
+            <h5>熊伟</h5>
             <p>深圳市三旺通信股份有限公司董事长</p>
             <p><span>{{isset($peopleCount['17'])?$peopleCount['17']:"0"}}</span>票</p>
             <p class="dowebok"><input type="checkbox" name="man" value="17" data-labelauty="选择"></p>
         </div>
         <div class="man">
             <img src="{{asset('/img/man/18.jpg')}}">
-            <h6>熊海刚</h6>
+            <h5>熊海刚</h5>
             <p>方大智创科技有限公司总经理</p>
             <p><span>{{isset($peopleCount['18'])?$peopleCount['18']:"0"}}</span>票</p>
             <p class="dowebok"><input type="checkbox" name="man" value="18" data-labelauty="选择"></p>
