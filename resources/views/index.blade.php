@@ -556,17 +556,17 @@
                 if(res.checkResult.onMenuShareAppMessage)
                 {
                     wx.onMenuShareAppMessage({
-                        title: '第三届深圳工业大奖公众投票', // 分享标题
-                        desc: '第三届深圳工业大奖公众投票正在火热进行', // 分享描述
-                        link: 'http://vote.fszi.org/', // 分享链接
+                        title: '第四届深圳工业大奖公众投票', // 分享标题
+                        desc: '第四届深圳工业大奖公众投票正在火热进行', // 分享描述
+                        link: 'http://gydj.fszi.org/', // 分享链接
                         imgUrl: '{{asset('/img/thumb.png')}}', // 分享图标
                         type: '', // 分享类型,music、video或link，不填默认为link
                         dataUrl: ''
                     });
 
                     wx.onMenuShareTimeline({
-                        title: '第三届深圳工业大奖公众投票', // 分享标题
-                        link: 'http://vote.fszi.org/', // 分享链接checkResult
+                        title: '第四届深圳工业大奖公众投票', // 分享标题
+                        link: 'http://gydj.fszi.org/', // 分享链接checkResult
                         imgUrl: '{{asset('/img/thumb.png')}}'
                     });
                 };
