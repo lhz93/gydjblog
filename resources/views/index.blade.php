@@ -355,7 +355,7 @@
             <img src="{{asset('/img/man/5.jpg')}}">
             <p>5号</p>
             <h5>李迪初</h5>
-            <p>深圳市长方集团股份有限公司CEO</p>
+            <p>长方集团康铭盛（深圳）科技有限公司董事长</p>
             <p><span>{{isset($peopleCount['5'])?$peopleCount['5']:"0"}}</span>票</p>
             <p class="dowebok"><input type="checkbox" name="man"  value="5" data-labelauty="选择"></p>
         </div>
