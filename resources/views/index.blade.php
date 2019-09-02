@@ -337,7 +337,7 @@
             <p>3号</p>
             <h5>卢国明</h5>
             <p>深圳市腾盛工业设备有限公司总经理</p>
-            <p><span>{{isset($peopleCount['3'])?"0":$peopleCount['3']}}</span>票</p>
+            <p><span>{{isset($peopleCount['3'])?$peopleCount['3']:"0"}}</span>票</p>
             <p class="dowebok"><input type="checkbox" name="man" value="3" data-labelauty="选择"></p>
         </div>
         <div class="man">
