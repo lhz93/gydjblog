@@ -29,7 +29,6 @@ class indexController extends Controller
         //$strOpenId = 'test2222222211122221';
 
         Session::put('open_id', $strOpenId);
-        Log::info("open_id",$strOpenId);
         $resut=Array();
         $peopleResult=Array();
         $voteAll=Vote::all();
