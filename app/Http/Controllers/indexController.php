@@ -17,6 +17,7 @@ use LvRedis;
 use WeChat;
 use Crypt;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Log;
 
 class indexController extends Controller
 {
@@ -28,6 +29,7 @@ class indexController extends Controller
         //$strOpenId = 'test2222222211122221';
 
         Session::put('open_id', $strOpenId);
+        Log::info("open_id",$strOpenId);
         $resut=Array();
         $peopleResult=Array();
         $voteAll=Vote::all();
@@ -157,7 +159,7 @@ class indexController extends Controller
 
                 foreach($votePeopleList as $value)
                 {
-                    //LvRedis::rpush('lvotep',$value);
+                   //LvRedis::rpush('lvotep',$value);
                    DB::insert('insert into CX_People (people_id) values (?)', array($value));
 
 //                $p=new People();
