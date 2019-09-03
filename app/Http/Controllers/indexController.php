@@ -24,45 +24,77 @@ class indexController extends Controller
     public function index()
     {
         $js = WeChat::js();
-        $wechatUser = session('wechat.oauth_user');
-        $strOpenId = $wechatUser->getId();
-        //$strOpenId = 'test2222222211122221';
+         $wechatUser = session('wechat.oauth_user');
+         $strOpenId = $wechatUser->getId();
+       // $strOpenId = 'test123'.rand(1, 10000);
 
         Session::put('open_id', $strOpenId);
+
         $resut=Array();
         $peopleResult=Array();
+
         $voteAll=Vote::all();
-        $peopleAll=People::all();
 
-        if($voteAll!=null&&count($voteAll)>0)
+        if(!LvRedis::exists("CompanyVote"))
         {
-            $companyIdDistince=$voteAll->groupBy('company_id')->toArray();
-            foreach($companyIdDistince as $key => $value)
+            $voteAll=Vote::all();
+            if($voteAll!=null&&count($voteAll)>0)
             {
-                $resut[$key]=count($value);
-                //var_dump($resut);
+                $companyIdDistince=$voteAll->groupBy('company_id')->toArray();
+                foreach($companyIdDistince as $key => $value)
+                {
+                    $resut[$key]=count($value);
+                }
+            }
+            else{
+                for ( $i =1; $i < 33; $i ++ ) {
+                    $resut[$i] = 0;
+                }
             }
 
+            LvRedis::set("CompanyVote",json_encode($resut));
+        }
+        else{
+
+            $resut=\GuzzleHttp\json_decode(LvRedis::get("CompanyVote"),true);
         }
 
-        if($peopleAll!=null&&count($peopleAll)>0)
+        if(!LvRedis::exists("PeopleVote"))
         {
-            $peopleAllDistince=$peopleAll->groupBy('people_id')->toArray();
-
-           foreach($peopleAllDistince as $key => $value)
+            $peopleAll=People::all();
+            if($peopleAll!=null&&count($peopleAll)>0)
             {
-                $peopleResult[$key]=count($value);
+                $peopleAllDistince=$peopleAll->groupBy('people_id')->toArray();
+
+                foreach($peopleAllDistince as $key => $value)
+                {
+                    $peopleResult[$key]=count($value);
+                }
             }
-
-
+            else{
+                for ( $i =1; $i < 13; $i ++ ) {
+                    $peopleResult[$i] = 0;
+                }
+            }
+            LvRedis::set("PeopleVote",json_encode($peopleResult));
+        }
+        else{
+            $peopleResult=\GuzzleHttp\json_decode(LvRedis::get("PeopleVote"),true);
         }
 
 
+        if(!LvRedis::exists("VoteTotal"))
+        {
+            $counte=Vote::count();
+            $countp=People::count();
+            $voteCount=$counte+$countp;
+            LvRedis::set("VoteTotal",$voteCount);
+        }
+        else{
+            $voteCount=LvRedis::get("VoteTotal");
+        }
 
-        $counte=Vote::count();
-        $countp=People::count();
-
-        return view('index',['voteCount'=>$counte+$countp,'companyCount'=>$resut,'peopleCount'=>$peopleResult,'openId'=>$strOpenId,'js'=>$js]);
+        return view('index',['voteCount'=>$voteCount,'companyCount'=>$resut,'peopleCount'=>$peopleResult,'openId'=>$strOpenId,'js'=>$js]);
     }
 
     public function checkUserIsVote(Request $request)
@@ -122,9 +154,8 @@ class indexController extends Controller
 
         $votePeopleList =json_decode($request->get('votep'));
         $redisKey=trim('openid_vote_' . date('Ymd') . '_' . $strOpenid);
-
+        //echo $redisKey;
         $terst=$this->checkVoteTime();
-
         if($strOpenid==null)
         {
             $result=4;
@@ -175,6 +206,38 @@ class indexController extends Controller
                     $redisSeconds=(int)(86400-$date_time_hours*60*60+$date_time_minutes*60+$date_time_seconds*1);
                     LvRedis::expire($redisKey, $redisSeconds);
                     $result=1;
+                    //更新redis的数量
+                    $voteArray=\GuzzleHttp\json_decode(LvRedis::get('CompanyVote'),true);
+                    foreach($voteList as $companyId)
+                    {
+                        foreach($voteArray as $key => $value)
+                        {
+                            if($key==$companyId)
+                            {
+                                $voteArray[$key]=$value+1;
+                            }
+                        }
+                    }
+                    LvRedis::set('CompanyVote',json_encode($voteArray));
+
+                    //更新候选人
+                    $voteP=\GuzzleHttp\json_decode(LvRedis::get('PeopleVote'),true);
+                    foreach($votePeopleList as $peopleId)
+                    {
+                        foreach($voteP as $key => $value)
+                        {
+                            if($key==$peopleId)
+                            {
+                                $voteP[$key]=$value+1;
+                            }
+                        }
+                    }
+                    LvRedis::set('PeopleVote',json_encode($voteP));
+
+                    //更新总票数
+                    $voteTotal=(int)LvRedis::get("VoteTotal");
+                    $voteTotal+=(count($voteList)+count($votePeopleList));
+                    LvRedis::set('VoteTotal',$voteTotal);
 
                 }
                 catch(Exception $ex){
@@ -191,10 +254,10 @@ class indexController extends Controller
     private function checkVoteTime()
     {
         $intVoteStartTime = strtotime('2019-09-01 00:00:00');
-        $intVoteEndTime = strtotime('2019-09-09 00:00:00');
+        $intVoteEndTime = strtotime('2019-09-08 00:00:00');
 
         $intVoteDayStartTime = '09:00';
-        $intVoteDayEndTime = '21:00';
+        $intVoteDayEndTime = '24:00';
 
         $intTime = time();
         $strTime = date('H:i');
