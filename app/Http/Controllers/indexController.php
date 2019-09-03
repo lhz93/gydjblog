@@ -258,7 +258,7 @@ class indexController extends Controller
         $intVoteEndTime = strtotime('2019-09-08 00:00:00');
 
         $intVoteDayStartTime = '09:00';
-        $intVoteDayEndTime = '24:00';
+        $intVoteDayEndTime = '18:00';
 
         $intTime = time();
         $strTime = date('H:i');
