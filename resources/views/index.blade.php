@@ -556,22 +556,21 @@
                         // sublodend();
                         if(response==1)
                         {
-                            alert('投票成功!',function(){
-                                var totalCount=parseInt($('#totalCount').text());
-                                $('#totalCount').text(totalCount+logVoteCount.length+manVoteCount.length);
-                                for(var $i=0;$i<logVoteCount.length;$i++)
-                                {
-                                   var currentCount= parseInt($('#cp'+logVoteCount[$i]).text());
-                                    $('#cp'+logVoteCount[$i]).text(currentCount+1);
-                                }
+                            alert('投票成功!');
 
-                                for(var $i=0;$i<manVoteCount.length;$i++)
-                                {
-                                    var currentCount= parseInt($('#pc'+manVoteCount[$i]).text());
-                                    $('#pc'+manVoteCount[$i]).text(currentCount+1);
-                                }
-                            });
+                            var totalCount=parseInt($('#totalCount').text());
+                            $('#totalCount').text(totalCount+logVoteCount.length+manVoteCount.length);
+                            for(var $i=0;$i<logVoteCount.length;$i++)
+                            {
+                                var currentCount= parseInt($('#cp'+logVoteCount[$i]).text());
+                                $('#cp'+logVoteCount[$i]).text(currentCount+1);
+                            }
 
+                            for(var $i=0;$i<manVoteCount.length;$i++)
+                            {
+                                var currentCount= parseInt($('#pc'+manVoteCount[$i]).text());
+                                $('#pc'+manVoteCount[$i]).text(currentCount+1);
+                            }
                             //window.location.href="/index"
                         }
                         else if(response==2)
