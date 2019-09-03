@@ -10,7 +10,7 @@
 <script src="{{asset('/js/respond.min.js')}}"></script>
 <![endif]-->
 
-<script src="http://staic.sztopbrand.com/js/jquery-1.12.3.min.js" type="text/javascript"></script>
+<script src="http://wx.fszi.org/js/jquery.min.js" type="text/javascript"></script>
 <head>
     <title>Login</title>
 </head>
