@@ -54,7 +54,7 @@
         <div class="brand">
             <img src="http://wx.fszi.org/vote/img/logo/2.png">
             <p>2号</p>
-            <h5>深圳奥特讯电力设备股份有限公司</h5>
+            <h5>深圳奥特迅电力设备股份有限公司</h5>
             <p><span id="cp2">{{isset($companyCount['2'])?$companyCount['2']:"0"}}</span>票</p>
             <p class="dowebok"><input type="checkbox" name="logo" value="2" data-labelauty="选择"></p>
         </div>
@@ -461,7 +461,7 @@
             <img src="http://wx.fszi.org/vote/img/man/16.jpg">
             <p>16号</p>
             <h5>廖晓霞</h5>
-            <p>深圳奥特讯电力设备股份有限公司董事长兼总经理</p>
+            <p>深圳奥特迅电力设备股份有限公司董事长兼总经理</p>
             <p><span id="pc16">{{isset($peopleCount['16'])?$peopleCount['16']:"0"}}</span>票</p>
             <p class="dowebok"><input type="checkbox" name="man" value="16" data-labelauty="选择"></p>
         </div>
