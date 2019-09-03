@@ -45,6 +45,7 @@ class indexController extends Controller
                 {
                     $resut[$key]=count($value);
                 }
+
             }
             else{
                 for ( $i =1; $i < 33; $i ++ ) {
@@ -72,7 +73,7 @@ class indexController extends Controller
                 }
             }
             else{
-                for ( $i =1; $i < 13; $i ++ ) {
+                for ( $i =1; $i < 19; $i ++ ) {
                     $peopleResult[$i] = 0;
                 }
             }
