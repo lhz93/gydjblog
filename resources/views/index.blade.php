@@ -200,7 +200,7 @@
         <div class="brand">
             <img src="http://wx.fszi.org/vote/img/logo/19.png">
             <p>19号</p>
-            <h5>深圳市康冠技术有限公司</h5>
+            <h5>深圳市康冠科技股份有限公司</h5>
             <p><span>{{isset($companyCount['19'])?$companyCount['19']:"0"}}</span>票</p>
             <p class="dowebok"><input type="checkbox" name="logo" value="19" data-labelauty="选择"></p>
         </div>
