@@ -10,7 +10,7 @@
 <script src="{{asset('/js/respond.min.js')}}"></script>
 <![endif]-->
 
-<script src="http://wx.fszi.org/js/jquery.min.js" type="text/javascript"></script>
+<script src="http://wx.fszi.org/vote/js/jquery.min.js" type="text/javascript"></script>
 <head>
     <title>Login</title>
 </head>
