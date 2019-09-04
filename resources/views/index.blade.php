@@ -226,7 +226,7 @@
         <div class="brand">
             <img src="http://wx.fszi.org/vote/img/logo/1.png">
             <p>1号</p>
-            <h5>艾礼富电子有限公司</h5>
+            <h5>艾礼富电子（深圳）有限公司</h5>
             <p><span id="cp1">{{isset($companyCount['1'])?$companyCount['1']:"0"}}</span>票</p>
             <p class="dowebok"><input type="checkbox" name="logo" value="1" data-labelauty="选择"></p>
         </div>
