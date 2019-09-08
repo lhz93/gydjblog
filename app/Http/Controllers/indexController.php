@@ -255,7 +255,7 @@ class indexController extends Controller
     private function checkVoteTime()
     {
         $intVoteStartTime = strtotime('2019-09-01 00:00:00');
-        $intVoteEndTime = strtotime('2019-09-08 00:00:00');
+        $intVoteEndTime = strtotime('2019-09-09 00:00:00');
 
         $intVoteDayStartTime = '09:00';
         $intVoteDayEndTime = '18:00';
