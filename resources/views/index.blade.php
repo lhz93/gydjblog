@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-cmn-Hans">
 <head>
     <meta charset="UTF-8" manifest="vote.manifest">
@@ -582,7 +582,7 @@
                         }
                         else if(response==3)
                         {
-                             alert('不在投票时间内!');
+                             alert('投票已经结束!');
                         }
                         else{
                             alert('投票失败,请重新投!');
